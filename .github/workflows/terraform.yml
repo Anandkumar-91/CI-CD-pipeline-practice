@@ -23,22 +23,45 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
+      # 1. Checkout code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. Setup Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.13.5"
 
+      # 3. Azure Login
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: |
+            {
+              "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}",
+              "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}",
+              "tenantId": "${{ secrets.ARM_TENANT_ID }}"
+            }
+
+      # 4. Verify Azure Login
+      - name: Check Azure Account
+        run: |
+          az account show --query "{Subscription:id, Tenant:tenantId}" -o table
+
+      # 5. Terraform Init
       - name: Terraform Init
         run: terraform init
 
+      # 6. Terraform Format Check
       - name: Terraform Format Check
         run: terraform fmt -check
 
+      # 7. Terraform Validate
       - name: Terraform Validate
         run: terraform validate
 
+      # 8. Terraform Plan
       - name: Terraform Plan
         run: terraform plan
