@@ -8,3 +8,11 @@ rgs = {
     location = "central india"
   }
 }
+vnet = {
+  vnet1 = {
+    name          = "test-vnet"
+    locarion      = "central india"
+    rg_name       = "test1-cicd"
+    address_space = ["10.1.0.0/16"]
+  }
+}
