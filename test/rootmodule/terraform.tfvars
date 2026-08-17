@@ -7,8 +7,12 @@ rgs = {
     name     = "test2-cicd"
     location = "central india"
   }
-   rg3 = {
+  rg3 = {
     name     = "test3-cicd"
+    location = "central india"
+  }
+  rg4 = {
+    name     = "test4-cicd"
     location = "central india"
   }
 }
@@ -25,13 +29,13 @@ vnet = {
     rg_name       = "test1-cicd"
     address_space = ["10.2.0.0/16"]
   }
-   vnet3 = {
+  vnet3 = {
     name          = "test3-vnet"
     location      = "central india"
     rg_name       = "test3-cicd"
     address_space = ["10.3.0.0/16"]
   }
-    vnet4 = {
+  vnet4 = {
     name          = "test4-vnet"
     location      = "central india"
     rg_name       = "test3-cicd"
