@@ -42,3 +42,12 @@ vnet = {
     address_space = ["10.4.0.0/16"]
   }
 }
+rgsa = {
+  sa1 = {
+    name                     = "akteststorage789"
+    location                 = "central india"
+    rg_name                  = "test1-cicd"
+    account_replication_type = "LRS"
+    account_tier             = "Standard"
+  }
+}
