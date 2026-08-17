@@ -14,3 +14,8 @@ module "sa" {
 
   rgsa = var.rgsa
 }
+module "subs" {
+  source = "../child_modules/azurerm_subnet"
+  subnet = var.subnet
+
+}
