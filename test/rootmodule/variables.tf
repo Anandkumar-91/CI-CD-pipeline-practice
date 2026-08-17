@@ -10,3 +10,4 @@ variable "rgsa" {
     account_tier             = string
   }))
 }
+variable "subnet" {}
