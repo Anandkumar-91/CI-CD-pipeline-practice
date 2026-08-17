@@ -10,7 +10,7 @@ module "vnet" {
 
 }
 module "sa" {
-  depends_on = [module.resource_group]
-  source     = "../child_modules/azurerm_storage_account"
-  rgsa       = var.rgsa
+  source = "../child_modules/azurerm_storage_account"
+
+  rgsa = var.rgsa
 }
