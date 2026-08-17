@@ -1,9 +1,9 @@
 rgs = {
   rg1 = {
-    name     = "test-cicd"
+    name     = "test1-cicd"
     location = "central india"
   }
-  rg1 = {
+  rg2 = {
     name     = "test2-cicd"
     location = "central india"
   }

@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./env/test
+        working-directory: ./test/rootmodule
 
     test:
       ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}  
