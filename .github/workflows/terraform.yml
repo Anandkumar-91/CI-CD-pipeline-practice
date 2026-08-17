@@ -2,10 +2,8 @@ name: Terraform CI
 
 on:
   push:
-    branches: ["main"]
 
-  pull_request:
-    branches: ["main"]
+  pull_request: 
 
 jobs:
   terraform:
@@ -16,11 +14,6 @@ jobs:
       run:
         working-directory: ./test/rootmodule
 
-    env:
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
 
@@ -35,17 +28,10 @@ jobs:
           terraform_version: "1.13.5"
 
       # 3. Azure CLI Login
-      - name: Azure Login
-        shell: bash
-        run: |
-          az login \
-            --service-principal \
-            --username "$ARM_CLIENT_ID" \
-            --password "$ARM_CLIENT_SECRET" \
-            --tenant "$ARM_TENANT_ID"
-
-          az account set \
-            --subscription "$ARM_SUBSCRIPTION_ID"
+      - name: Azure Login 
+        uses: azure/login@v3
+        with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # 4. Verify Azure Login
       - name: Check Azure Account
