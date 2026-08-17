@@ -11,6 +11,10 @@ rgs = {
     name     = "test3-cicd"
     location = "central india"
   }
+  rg4 = {
+    name     = "test4-cicd"
+    location = "central india"
+  }
 }
 vnet = {
   vnet1 = {
