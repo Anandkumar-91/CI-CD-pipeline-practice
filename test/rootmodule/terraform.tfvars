@@ -50,4 +50,11 @@ rgsa = {
     account_replication_type = "LRS"
     account_tier             = "Standard"
   }
+  sa2 = {
+    name                     = "akteststorage6789"
+    location                 = "central india"
+    rg_name                  = "test1-cicd"
+    account_replication_type = "LRS"
+    account_tier             = "Standard"
+  }
 }
