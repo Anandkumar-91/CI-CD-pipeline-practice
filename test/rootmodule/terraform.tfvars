@@ -31,4 +31,10 @@ vnet = {
     rg_name       = "test3-cicd"
     address_space = ["10.3.0.0/16"]
   }
+    vnet4 = {
+    name          = "test4-vnet"
+    location      = "central india"
+    rg_name       = "test3-cicd"
+    address_space = ["10.4.0.0/16"]
+  }
 }
