@@ -57,11 +57,5 @@ rgsa = {
     account_replication_type = "LRS"
     account_tier             = "Standard"
   }
-  sa3 = {
-    name                     = "akteststorage6780"
-    location                 = "central india"
-    rg_name                  = "test2-cicd"
-    account_replication_type = "LRS"
-    account_tier             = "Standard"
-  }
+ 
 }
