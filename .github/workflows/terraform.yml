@@ -23,7 +23,8 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
     steps:
-      # 1. Checkout code
+
+      # 1. Checkout Code
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -33,22 +34,26 @@ jobs:
         with:
           terraform_version: "1.13.5"
 
-      # 3. Azure Login
+      # 3. Azure CLI Login
       - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: |
-            {
-              "clientId": "${{ secrets.ARM_CLIENT_ID }}",
-              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}",
-              "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}",
-              "tenantId": "${{ secrets.ARM_TENANT_ID }}"
-            }
+        shell: bash
+        run: |
+          az login \
+            --service-principal \
+            --username "$ARM_CLIENT_ID" \
+            --password "$ARM_CLIENT_SECRET" \
+            --tenant "$ARM_TENANT_ID"
+
+          az account set \
+            --subscription "$ARM_SUBSCRIPTION_ID"
 
       # 4. Verify Azure Login
       - name: Check Azure Account
+        shell: bash
         run: |
-          az account show --query "{Subscription:id, Tenant:tenantId}" -o table
+          az account show \
+            --query "{Subscription:id, Tenant:tenantId, Name:name}" \
+            -o table
 
       # 5. Terraform Init
       - name: Terraform Init
