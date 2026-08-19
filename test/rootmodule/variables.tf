@@ -11,3 +11,4 @@ variable "rgsa" {
   }))
 }
 variable "subnet" {}
+variable "sql_database" {}

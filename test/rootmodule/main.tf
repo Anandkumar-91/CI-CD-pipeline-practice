@@ -10,12 +10,20 @@ module "vnet" {
 
 }
 module "sa" {
-  source = "../child_modules/azurerm_storage_account"
+  depends_on = [module.resource_group]
+  source     = "../child_modules/azurerm_storage_account"
 
   rgsa = var.rgsa
 }
 module "subs" {
-  source = "../child_modules/azurerm_subnet"
-  subnet = var.subnet
+  depends_on = [module.vnet, module.resource_group]
+  source     = "../child_modules/azurerm_subnet"
+  subnet     = var.subnet
+
+}
+module "database" {
+  depends_on   = [module.resource_group]
+  source       = "../child_modules/azurerm_database_sql"
+  sql_database = var.sql_database
 
 }
